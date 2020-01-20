@@ -1,0 +1,20 @@
+version: "3.7"
+services: 
+    go:
+        build: 
+            context: ./server
+            dockerfile: Dockerfile
+    web:
+        build: 
+            context: ./web
+            dockerfile: Dockerfile
+    nginx:
+        build: 
+            context: ./nginx
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+        links:
+            - go
+            - web
+
